@@ -133,7 +133,14 @@ class ReactNodeView extends NodeView<
 
     return this.contentDOMElement
   }
-
+  
+  updateSelectedProp(selected = false) {
+    if (this.props.selected !== selected) {
+      this.props.selected = selected;
+      this.render();
+    }
+  }
+  
   handleSelectionUpdate() {
     const { from, to } = this.editor.state.selection
 
@@ -189,10 +196,8 @@ class ReactNodeView extends NodeView<
   }
 
   deselectNode() {
-    this.renderer.updateProps({
-      selected: false,
-    })
-    this.renderer.element.classList.remove('ProseMirror-selectednode')
+    this.renderer.updateSelectedProp(false);
+    this.renderer.element.classList.remove('ProseMirror-selectednode');
   }
 
   destroy() {
