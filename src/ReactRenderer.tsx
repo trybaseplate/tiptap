@@ -87,7 +87,13 @@ export class ReactRenderer<R = unknown, P = unknown> {
 
     this.editor?.contentComponent?.setRenderer(this.id, this)
   }
-
+  
+  updateSelectedProp(selected = false) {
+    if (this.props.selected !== selected) {
+      this.props.selected = selected;
+      this.render();
+    }
+  }
   updateProps(props: Record<string, any> = {}): void {
     this.props = {
       ...this.props,
