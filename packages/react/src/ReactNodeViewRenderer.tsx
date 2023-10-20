@@ -134,13 +134,6 @@ class ReactNodeView extends NodeView<
     return this.contentDOMElement
   }
   
-  updateSelectedProp(selected = false) {
-    if (this.props.selected !== selected) {
-      this.props.selected = selected;
-      this.render();
-    }
-  }
-  
   handleSelectionUpdate() {
     const { from, to } = this.editor.state.selection
 
